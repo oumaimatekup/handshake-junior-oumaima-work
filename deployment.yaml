@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: student-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: student
+  template:
+    metadata:
+      labels:
+        app: student
+    spec:
+      containers:
+      - name: student-container
+        image: student-microservice:latest # Ensure this matches the Docker image tag
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
